@@ -1,0 +1,121 @@
+/* General Navbar Styles */
+nav {
+    width: 100%;
+    color: #fff;
+    height: 100px;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease-in-out;
+}
+
+.logo {
+    width: 275px;  
+    height: auto;  
+    margin-left: 20px;
+    margin-top: 26px;  
+    transition: all 0.3s ease-in-out;
+}
+
+
+nav ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    transition: all 0.3s ease-in-out;
+}
+
+nav ul li {
+    margin: 0 15px;
+    font-size: 18px;
+    transition: all 0.3s ease-in-out;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    padding: 5px 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    color: #FFD700;
+}
+
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 3px;
+    background-color: #FFD700;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+nav ul li a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Sticky Navbar */
+.dark-nav {
+    background: #212EA0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile Menu */
+.menu-icon {
+    display: none;
+    width: 35px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 1000px) {
+    .logo {
+        width: 140px;
+    }
+    nav ul li {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 840px) {
+    nav {
+        padding: 15px 0;
+    }
+    nav ul {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(33, 46, 160, 0.95);
+        width: 250px;
+        padding-top: 70px;
+        flex-direction: column;
+        align-items: flex-start;
+        transition: right 0.4s ease-in-out;
+    }
+    nav ul li {
+        display: block;
+        margin: 20px 40px;
+    }
+    .menu-icon {
+        display: block;
+        margin-right: 20px;
+    }
+    .hide-mobile-menu {
+        right: -250px;
+    }
+}

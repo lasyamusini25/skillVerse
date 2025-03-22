@@ -1,0 +1,79 @@
+/* Campus.css */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4; /* Light background for contrast */
+}
+
+.deck {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center; /* Center the cards */
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 250px; /* Default width for cards */
+  transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Slightly enlarge card on hover */
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+}
+
+.card-info {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 18px;
+  margin: 0 0 10px;
+  color: #333; /* Darker text for better readability */
+}
+
+.card-description {
+  font-size: 14px;
+  color: #555; /* Slightly lighter text for description */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .deck {
+    flex-direction: column; /* Stack cards vertically on smaller screens */
+    align-items: center; /* Center cards */
+  }
+
+  .card {
+    width: 90%; /* Full width on smaller screens */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .deck {
+    justify-content: space-around; /* Space cards evenly on medium screens */
+  }
+
+  .card {
+    width: 45%; /* Two cards per row on medium screens */
+  }
+}
+
+@media (min-width: 1025px) {
+  .deck {
+    justify-content: space-between; /* Space cards evenly on larger screens */
+  }
+
+  .card {
+    width: 30%; /* Three cards per row on larger screens */
+  }
+}

@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    font-family: 'Outfit', sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* Responsive & Interactive Inputs */
+select, input, textarea {
+    @apply border border-gray-400 rounded-md p-2 transition-all duration-300 ease-in-out;
+    outline-color: #C586A5;
+}
+
+select:focus, input:focus, textarea:focus {
+    @apply border-pink-500 shadow-md;
+}
+
+/* Buttons */
+.btn {
+    @apply px-4 py-2 font-semibold text-white rounded-md transition-all duration-300 ease-in-out;
+    background: linear-gradient(135deg, #C586A5, #ff87b8);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+/* Active State */
+.active {
+    @apply bg-pink-100 border-pink-500;
+}
+
+/* Card Hover Effect */
+.card {
+    @apply p-4 shadow-lg rounded-lg bg-white transition-all duration-300 ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Grid */
+.grid-container {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Background Graphics */
+.bg-graphic {
+    background: radial-gradient(circle at top left, rgba(255, 192, 203, 0.3), transparent);
+}
+
+/* Responsive Navbar */
+.navbar {
+    @apply flex justify-between items-center p-4 bg-white shadow-md;
+}
+
+.nav-item {
+    @apply px-3 py-2 transition-all duration-300 ease-in-out;
+}
+
+.nav-item:hover {
+    @apply text-pink-600;
+}
+
+/* Mobile Menu */
+.menu {
+    @apply hidden md:flex gap-4;
+}
+
+.menu-toggle {
+    @apply block md:hidden cursor-pointer text-2xl;
+}
