@@ -17,6 +17,7 @@ import Verify from './pages/Verify';
 import GigList from "./components/GigList";
 import GigDetails from './components/GigDetails';  
 import Earnly from "./pages/Earnly";  // ✅ Import Earnly Page
+import ProfilePage from './pages/ProfilePage';
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
         <Route path='/gigs' element={<GigList />} />
         <Route path="/gig/:gigId" element={<GigDetails />} />
         <Route path='/earnly' element={<Earnly />} />  {/* ✅ Earnly Page */}
+        <Route path='/profile' element={<ProfilePage  />} />  {/* ✅ Earnly Page */}
       </Routes>
       <Footer />
     </div>

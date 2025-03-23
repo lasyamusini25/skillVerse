@@ -7,6 +7,8 @@ import jwt from 'jsonwebtoken';
 import authRoutes from './routes/authRoutes.js';
 import gigRoutes from './routes/gigRoutes.js';
 import userRouter from './routes/userRoute.js';
+import orderRouter from './routes/orderRoute.js';
+import profileRoutes from './routes/profileRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -52,8 +54,10 @@ app.get('/api/generate-token/:userId', (req, res) => {
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/profile', profileRoutes);
 app.use('/api/gigs', gigRoutes);
 app.use('/api/user', userRouter);
+app.use('/api/order', orderRouter);
 
 // Default Route
 app.get('/', (req, res) => {

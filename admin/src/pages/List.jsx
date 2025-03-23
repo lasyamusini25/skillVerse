@@ -44,10 +44,16 @@ const List = ({ token }) => {
 
       if (response.data.success) {
         toast.success(`Student ${action}d successfully`);
+
         setGigs((prev) =>
           prev.map((gig) =>
             gig._id === gigId
-              ? { ...gig, applicants: gig.applicants.filter((s) => s._id !== studentId) }
+              ? {
+                  ...gig,
+                  applicants: gig.applicants.map((s) =>
+                    s._id === studentId ? { ...s, status: action } : s
+                  ),
+                }
               : gig
           )
         );
@@ -104,21 +110,34 @@ const List = ({ token }) => {
                       gig.applicants.map((student) => (
                         <div key={student._id} className="flex justify-between items-center p-2 bg-white shadow-sm rounded-lg mb-2">
                           <p
-                            className="text-blue-600 cursor-pointer hover:underline"
+                            className="text-blue-600 cursor-pointer hover:underline flex items-center gap-2"
                             onClick={() => navigate(`/student/${student._id}`)}
                           >
-                            {student.name}
+                            {student.name}{" "}
+                            {student.status === "approve" ? (
+                              <span className="text-green-600">✅</span>
+                            ) : student.status === "reject" ? (
+                              <span className="text-red-600">❌</span>
+                            ) : (
+                              <span className="text-gray-500">⌛</span>
+                            )}
                           </p>
                           <div className="flex gap-2">
                             <button
-                              className="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-700 transition"
+                              className={`px-3 py-1 rounded-lg transition ${
+                                student.status === "approve" ? "bg-gray-400 cursor-not-allowed" : "bg-green-500 hover:bg-green-700 text-white"
+                              }`}
                               onClick={() => handleApproval(gig._id, student._id, "approve")}
+                              disabled={student.status === "approve"}
                             >
                               ✔ Approve
                             </button>
                             <button
-                              className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-700 transition"
+                              className={`px-3 py-1 rounded-lg transition ${
+                                student.status === "reject" ? "bg-gray-400 cursor-not-allowed" : "bg-red-500 hover:bg-red-700 text-white"
+                              }`}
                               onClick={() => handleApproval(gig._id, student._id, "reject")}
+                              disabled={student.status === "reject"}
                             >
                               ❌ Reject
                             </button>

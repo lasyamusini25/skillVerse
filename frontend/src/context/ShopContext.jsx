@@ -6,7 +6,7 @@ import axios from 'axios';
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
-
+    
     const currency = '$';
     const delivery_fee = 10;
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -15,7 +15,6 @@ const ShopContextProvider = (props) => {
     const [products, setProducts] = useState([]);
     const [token, setToken] = useState('');
     const navigate = useNavigate();
-
     const getProductsData = async () => {
         try {
             const token = localStorage.getItem('token'); // Ensure token is available
@@ -59,6 +58,7 @@ const ShopContextProvider = (props) => {
         navigate, backendUrl,
         setToken, token
     };
+    console.log("🔍 Token from Context:", token);
 
     return (
         <ShopContext.Provider value={value}>

@@ -13,17 +13,31 @@ export const getProfile = async (req, res) => {
   }
 };
 
-// Update or Create Profile
 export const updateProfile = async (req, res) => {
   const { userId, name, email, education, projects, skills } = req.body;
+
+  // 🔹 Validate userId
+  if (!userId) {
+    return res.status(400).json({ error: "User ID is required." });
+  }
+
   try {
-    const profile = await UserProfile.findOneAndUpdate(
-      { userId },
-      { name, email, education, projects, skills },
+    // 🔹 Ensure `projects` and `skills` are arrays to prevent schema issues
+    const updatedProfile = await UserProfile.findOneAndUpdate(
+      { userId }, // Find by userId
+      {
+        name,
+        email,
+        education,
+        projects: Array.isArray(projects) ? projects : [],
+        skills: Array.isArray(skills) ? skills : [],
+      },
       { new: true, upsert: true }
     );
-    res.json(profile);
+
+    res.json(updatedProfile);
   } catch (error) {
-    res.status(500).json({ error: "Profile update failed" });
+    console.error("Error updating profile:", error);
+    res.status(500).json({ error: "Internal Server Error. Profile update failed." });
   }
 };

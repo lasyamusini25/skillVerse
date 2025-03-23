@@ -8,6 +8,7 @@ import Orders from './pages/Orders';
 import Login from './components/Login';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Display from './pages/Display';
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export const currency = '$';
@@ -19,7 +20,8 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem('token', token);
   }, [token]);  // Added dependency to ensure effect runs only when `token` changes
-
+  console.log(token);
+  
   return (
     <div className='bg-gray-50 min-h-screen'>
       <ToastContainer />
@@ -35,6 +37,9 @@ const App = () => {
               <Routes>
                 <Route path='/add' element={<AddGig token={token} />} />  {/* Updated component name */}
                 <Route path='/list' element={<List token={token} />} />
+                {/* <Route path='/display' element={<Display />} />
+                 */}
+                 <Route path="/student/:userId" element={<Display />} />
                 <Route path='/orders' element={<Orders token={token} />} />
               </Routes>
             </div>
